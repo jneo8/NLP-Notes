@@ -389,6 +389,179 @@ identify holders is also useful. e.g in news article, ,etc, but they are usually
   
 --- 
 
+ # Sentence-Level sentiment analysis
+ 
+ - Document-level sentiment classification is too coarse for most applications.
+ - Let us move to the sentence level.
+ - Much of the work on sentence level sentiment analysis focuses on identifying `subjective sentiences` in new articles.
+ 	- Classification : objective and subjective.
+ 	- All techniques use some forms of machine learning
+ 	- E.g., using a naïve Bayesian classifier with a set of data features/attributes extracted from training sentences (Wiebe et al. ACL-99).
+
+> **對大多數的 application 來說, document-level 太過於粗糙**
+> 大多數的 sentiment-level 在 主要是在確定文章中主觀的句子
+> 分類器 : 主觀與非主觀
+> 都使用了某種程度的機器學習
+
+---
+
+## Using learnt patterns 
+
+(Rilloff and Wiebe, EMNLP-03)
+
+---
+
+##  Subjectivity and polarity (orientation)
+
+(Yu and Hazivassiloglou, EMNLP-03)
+
+---
+
+##  Other related work
+
+- Consider gradable adjectives (Hatzivassiloglou and Wiebe, Coling- 00)  
+- Semi-supervised learning with the initial training set identified by some strong patterns and then applying NB or self-training (Wiebe and Riloff, CICLing-05).- Finding strength of opinions at the clause level (Wilson et al. AAAI- 04).  
+- Sum up orientations of opinion words in a sentence (or within some word window) (Kim and Hovy, COLING-04).- Find clause or phrase polarities based on priori opinion words and classification (Wilson et al. EMNLP-05)- Semi-supervised learning to classify sentences in reviews (Gamon et al. IDA-05).  
+- Sentiment sentence retrieval (Eguchi and Lavrendo, EMNLP-06)
+
+---
+
+## Let us go further?
+
+- Sentiment classification at both document and sentence(or clause ) levels are useful, but 
+	- They don't find what the opinion holder liked and disliked.
+
+- An negative sentiment on an object
+	- does not mean that the opinion holder dislike everything about the object.
+
+- An positive sentiment on an object
+	- doed not mean that the opinion holder likes everything about the object.
+
+**We need to gl to the feature level**
+
+> Sentiment classification and document level 找不到 opinion-holder 喜歡與不喜歡什麼
+> 一個 負面的 object 並不代表 opinion-holder 討厭 object的所有事情, 反之亦然.
+
+---
+
+## But before we go further 
+
+- Let us discuss `Opinion words` and `Phrases` (also called polar words, opinion bearing words, etc.)
+
+ - Postive: beautiful, worderful, good, amazing
+ - Negative: bad, poor, terrible, cost someone an arm and a leg.
+
+- They are instrimental for opinion mining(obviously)
+- Three main ways to compile such a list
+	- Manual approach: not a bad idea, only an one-time effort.
+	- Corpus-based approached
+	- Dictionary-based approaches
+
+> 定義opinion words
+> > 具有煽動性
+> 
+> 有三種產生方式
+> > * 手動產生
+> > * 語料庫
+> > * 辭典
+ 
+- **important to note**
+	- some opinion words are context indepentent
+	- Some are context dependent
+
+	> 一些 opinion word  是上下文獨立的, 有些則是相關的
+	
+---
+
+## Corpus-based approaches
+
+- Rely on syntactic or co-occirrence patterns in large corpora (Hazivassiloglou and McKeown, ACL-97; Turney, ACL- 02; Yu and Hazivassiloglou, EMNLP-03; Kanayama and Nasukawa, EMNLP-06; Ding and Liu SIGIR-07)
+
+    - Can find domain (not context!) dependent orientations (positive, negative, or neutral).
+
+- (Turney, ACL-02) and (Yu and Hazivassiloglou,
+EMNLP-03) are similar.
+
+    - Assign opinion orientations (polarities) to words/phrases.
+
+    - (Yu and Hazivassiloglou, EMNLP-03) is different from (Turney, ACL-02)
+ 
+ 	    - use more seed words (rather than two) and use log- likelihood ratio (rather than PMI).  
+
+---
+
+## Corpus-based approaches(contd)
+
+- Use constraints (or conventions) on connectives to identify opinion words (Hazivassiloglou and McKeown, ACL-97; Kanayama and Nasukawa, EMNLP-06; Ding and Liu, 2007). E.g.,
+
+> 在連接詞上使用約束來識別意見詞
+
+- Conjunction: conjoined adjectives usually have the same orientation (Hazivassiloglou and McKeown, ACL-97).
+	
+	- E.g., “This car is beautiful and spacious.” (conjunction)
+	- learning using:
+		- log-linear model: determine if two conjoined adjective are of the same or different orientations.
+		- Clustering : produce two sets of words: postive and negative
+	- Corpus: 21million word 1987 Wall Street Journal corpus.
+
+> 連接 連接形容詞通常具有相同的方向
+> 使用 log-linear model, 判斷連接詞兩邊的詞是否同個方向
+> 類聚 positive and negative 兩種類型的詞
+
+---
+
+## Corpus-based approaches(contd)
+
+- (Kanayama and Nasukawa, EMNLP-06) takes a similar approach to (Hazivassiloglou and McKeown, ACL-97) but for Japanese words:
+	
+	- instead of using learning, it uses two criteria to determine whether to add a word to positive or negative lexicon.
+	- Have an initial seed lexicon of positive and negative words.
+
+> 沒有學習直接使用兩種標準判斷應該加入positive or negative 詞庫
+> 有基礎的種子辭庫
+
+---
+
+## Corpus-based approaches(contd)
+
+
+- Ding and Liu, 2007) also exploits constraints on connectives, but with two differences
+
+	- It uses them to assign opinion orientations to product features (more on this later).
+		- One word may indicate different opinions in the same domain.
+			-   “The battery life is long” (+) and “It takes a long time to focus” (-).
+		
+		- Find domain opinion words is insufficient.
+
+	- It can be used without a large corpus.
+
+> 也對連接詞使用了限制, 但是有兩個不同
+> > * 相同的詞在不同領域可能有不同含義
+> > * 找尋 領域  opinion 是不足的
+> 
+> 在 corpus 不夠大時也可以使用
+
+---
+
+## Dictionary-based approaches
+
+- Typically use WordNet’s synsets and hierarchies toacquire opinion words
+ - Start with a small seed set of opinion words.
+ - Use the set to search for synonyms and antonyms in WordNet (Hu and Liu, KDD-04; Kim and Hovy, COLING-04).
+ - Manual inspection may be used afterward.
+
+- Use additional information (e.g., glosses) from WordNet (Andreevskaia and Bergler, EACL-06) and learning (Esuti and Sebastiani, CIKM-05).- Weakness of the approach: Do not find context dependent opinion words, e.g., small, long, fast.
+
+> 從一個種子意見詞開始, 搜索同義詞和反義詞
+> 之後可以手動檢查
+> 弱點是找不到上下文的意見詞
+
+---
+
+
+
+
+
 
 
 	
