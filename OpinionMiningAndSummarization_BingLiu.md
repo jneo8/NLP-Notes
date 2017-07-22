@@ -7,8 +7,9 @@
 <br>
 
 ### two main types of textual information.
-- ## Fact 事實
-- ## Opinion 意見
+
+### Fact 事實
+### Opinion 意見
 
 most current information processing techique (Ex. search engine) work with facts.
 
@@ -104,6 +105,7 @@ most current information processing techique (Ex. search engine) work with facts
 
 - How object A compares with objects B
     - Gmail vs Hotmail
+    
     > 找尋 object 之間的關聯
 
 ---
@@ -118,8 +120,11 @@ most current information processing techique (Ex. search engine) work with facts
     - One person or organization usually has only one opinion on a  topic.
     - The opion is likely contained in single document.
     - Thus, a good keyword query may be sufficient.
+    
     > 理由是
+    >
     > * 一個人或組織通常對於特定 topic 只有一項意見
+    >
     > * 意見通常會被包含在一篇文章內
 
 ---
@@ -161,6 +166,7 @@ most current information processing techique (Ex. search engine) work with facts
 - Should the sysem prepare a summary of the reviews?
 
     > 問題是 使用者需要 看過所有排名前面的 評論嗎?
+    >
     > 或者系統應該提供 評論的 總結?
   
 <br>
@@ -268,14 +274,130 @@ identify holders is also useful. e.g in news article, ,etc, but they are usually
 > * 如果`W` 未知, Tasks 3 的問題會變成是 匹配 新發現的 feature 與 已給定 feature 的 feature 
 > * 如果`W`, `F` 皆已知, 只需要執行 task 2
 
+<br>
+
 ---
 
+<br>
+
+
+# Document-Level sentiment classification
+
+---
+
+## Sentiment clssifiction
+
+**Classify document based on the overall sentiments expressed by opinion holders(authrs),**
+
+> Classify document 是基於 瀏覽全部 opinion-holder 所表達的情緒.
+
+- Postive, negative and (possibly) neutral.
+- Since in our model an object O itself is also a feature, then sentiment classification essentially determines the opinion expressed on O in each document
+
+> 由於 `O` 本身是個 feature, 情緒分類等於是 所有文件中 對於 `O` 所表達的意見
+
+**Similar but different from topic-based text classification**
+
+- In topic-based text classification, topic word are important.
+- In sentiment classification, sentiment word are more important e.g excellent, horrible, bad, worst etc.
+
+> 跟主題式的分類器相比有點相似但不同
+>
+> 在主題式分類器中, 主題字是重要的
+> 
+> 但在情緒分類器中, 情緒字眼更重要 例如  execllent, horrible
+
+---
+
+## Unsupervised review classification
+(Turney, ACL-02)
+
+無監督評論分類器
+
+**Data**
+
+- review from epinions.com on automobiles, banks, movies, and travel destinations.
+
+> 資料來自銀行, 旅遊, 電影之類的評論
+
+**Approach**
+
+- Step 1 
+	- part-of-speech tagging
+	- Extracting two consecutive words(two-word phrsed) from reviews if their tags conform to some given patterens, e.g
+	
+	> 第一步驟 
+	>
+	> 詞性標籤
+	>	
+	> 提取兩個連續詞, 如果他們的標籤符合某種給訂的模式
+
+- Step 2 Estimate the semantic orientation (SO) of the extracted phrases
+
+	- Use the `PMI (point mutual information)`
+
+	- Semantic orientation (SO)
+
+	- Using AltaVista(search engine) near operator to do serch to find the number of hits to compute `PMI` and `SO`
+	
+	> 估計提取出來的 短語的 `SO` 值
+	> 使用 search engine 去找到  鄰近 詞 的數量 來計算  `PMI` and `SO`
+	
+- Step 3 Compute the average SO of all phrases
+
+	- classify the review as recommend if average SO is positive, not recommended otherwise.
+	
+	> 計算所有短語的 平均 SO 值
+	>
+	> 如果 SO 值  positive 則表示推薦
+	
+---
+
+## Sentiment classificatino using machine learning methods
+(Pang et al, EMNLP-02)
+
+- This paper directly applied several machine learning techniques to classify movie reviews into positive and negative.
+- Threee classificatino techniques were trie:
+	- Naive Bayes
+	- Max entropy
+	- Support vector machine
+- Pre-processing settings: negation tag, unigram(single words), bigram, POS tag, position.
+- SVM: the best accuracy 83%.
+
+> 這份paper 使用了三種 machine lerning 來實作電影分類器 (正面與負面)
+> Naive Bayes, Max entropy and SVM
+> 預處理使用了包含 negation tag, unigram(single words), bigram, POS tag, position 等等方式
+> 最佳解是 SVM + unigram
+
+---
+
+## Review classification by scoring fratures
+
+(Dave, Lawrence and Pennock, WWW-03)
+
+---
+
+## Other related works
+
+- Using PMI, syntactic relations and other attributes with SVM (Mullen and Collier, EMNLP-04).
+- Sentiment classification considering rating scales (Pang and Lee, ACL-05).  
+- Comparing supervised and unsupervised methods (Chaovalit and Zhou, HICSS-05)- Using semi-supervised learning (Goldberg and Zhu, Workshop on TextGraphs, at HLT-NAAL-06).
+- Review identification and sentiment classification of reviews (Ng, Dasgupta and Arifin, ACL-06). 
+- Sentiment classification on customer feedback data (Gamon, Coling-04).  
+- Comparative experiments (Cui et al. AAAI-06)
+- Many more ...
+  
+--- 
+
+
+
+	
+	
+	 
+	
 
 
 
 
 
 
-    
-
-##     
