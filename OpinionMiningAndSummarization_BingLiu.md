@@ -386,10 +386,16 @@ identify holders is also useful. e.g in news article, ,etc, but they are usually
 - Sentiment classification on customer feedback data (Gamon, Coling-04).  
 - Comparative experiments (Cui et al. AAAI-06)
 - Many more ...
+
+<br>
   
 --- 
+---
 
- # Sentence-Level sentiment analysis
+<br>
+ 
+
+# Sentence-Level sentiment analysis
  
  - Document-level sentiment classification is too coarse for most applications.
  - Let us move to the sentence level.
@@ -556,7 +562,14 @@ EMNLP-03) are similar.
 > 之後可以手動檢查
 > 弱點是找不到上下文的意見詞
 
+<br>
+
 ---
+---
+
+<br>
+
+# Feature-based opinion mining and summarization
 
 
 
