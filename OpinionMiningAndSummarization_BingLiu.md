@@ -571,6 +571,216 @@ EMNLP-03) are similar.
 
 # Feature-based opinion mining and summarization
 
+- Again focus on reviews (easier to work in a concrete domain!)- Objective: find what reviewers (opinion holders) liked and disliked
+
+	- Product features and opinions on the features- Since the number of reviews on an object can be large, an opinion summary should be produced.
+
+	- Desirable to be a structured summary.
+	- Easy to visualize and to compare.
+	- Analogous to but different from multi-document summarization.
+
+---
+
+## The tasks
+
+ - Recall the three tasks in our model.
+ 	- Task 1: Extract object features that have been commented on in each review.	- Task 2: Determine whether the opinions on the features are positive, negative or neutral.	- Task 3: Group feature synonyms.   Produce a summary 
+ - Task 2 may not be needed depending on the format of reviews.
+
+--- 
+
+## Different review format
+
+- Format 1 - Pros, Cons and detailed review: The reviewer is asked to describe Pros and Cons separately and also write a detailed review. Epinions.com uses this format.
+
+> 分別描述利弊, 詳細
+
+-  Format 2 - Pros and Cons: The reviewer is asked to describe Pros and Cons separately. Cnet.com used to use this format.
+
+> 分別描述利弊- Format 3 - free format: The reviewer can write freely, i.e., no separation of Pros and Cons. Amazon.com uses this format.
+
+> 免費格式, 自由輸入
+
+---
+
+##  Feature-based opinion summary (Hu and Liu, KDD-04)
+
+> 在句子中找到 關鍵字, 並判斷 該句的正負面傾向, 然後做統計後 當作 feature
+
+---
+
+##  Feature extraction from Pros and Cons of Format 1 (Liu et al WWW-03; Hu and Liu, AAAI-CAAW-05)
+
+- Observation: Each sentence segment in Pros or Cons contains only one feature. Sentence segments can be separated by commas, periods, semi-colons, hyphens, ‘&’’s, ‘and’’s, ‘but’’s, etc.
+
+> 每段  sentence 句 中只有一個 feature
+
+---
+
+##  Extraction  using label sequential rules
+
+- Label sequential rules (LSR) are a special kind of sequential patterns, discovered from sequences.
+- LSR Mining is supervised (Liu’s Web mining book 2006).
+- The training data set is a set of sequences, e.g.,
+	`Included memory is stingy`
+		is turned into a sequence with POS tags.
+	
+	<{included, VB}{memory, NN}{is, VB}{stingy, JJ}>
+	
+	then turned into
+		<{included, VB}{`$feature`, NN}{is, VB}{stingy, JJ}>
+
+> LSR 是種順序模式的特殊類型, 從序列中發現
+> 屬於監督學習
+> 範例如上
+
+---
+
+## Using LSRs for extraction
+
+- Based on a set of training sequences, we can mine label sequential rules, e.g.,
+
+```
+<{easy, JJ }{to}{*, VB}> 變成
+
+<{easy, JJ}{to}{$feature, VB}>
+
+[sup = 10%, conf = 95%]
+
+```
+
+
+- Feature Extraction
+
+	- Only the right hand side of each rule is needed.
+	- The word in the sentence segment of a new review that matches $feature is extracted.
+	- We need to deal with conflict resolution also(multiple rules are applicable).
+
+> 提取符合 $feature 規則的單詞
+
+
+---
+
+## Extraction of features of format2 and 3
+
+- Reviews of these formats are usually complete sentences 
+
+> 評論通常來自完整的句子
+	
+- the pictures are very clear.
+
+    - Explicit feature: picture
+	> 明確的 feature
+
+- “It is small enough to fit easily in a coat pocket or purse.”
+
+	- Implicit feature: size
+	
+	> 隱含的 feature
+
+- Extraction: Frequency based approach
+	- Frequent features
+  	- Infrequent features
+
+    > 基於頻率的提取
+    
+---
+
+## Frequency based approach
+
+(Hu and Liu, KDD-04; Liu, Web Data Mining book 2007)- Frequent features: those features that have been talked about by many reviewers. 
+- Use sequential pattern mining  
+- Why the frequency based approach
+	- Different reviewers tell different stories (irrelevant)  - When product features are discussed, the words that they use converge.
+  - They are main features.  
+- Sequential pattern mining finds`frequent phrases`.  
+- Froogle has an implementation of the approach (no POS restriction).
+
+> 被許多評論使用的 feature
+> 使用順序模式挖掘
+> 為何使用頻率方式？
+> > * 不同的評論講述不同的故事
+> > * 當討論 feature 時, 使用的詞會匯集在一起
+> > * 而他們是主要特徵
+>
+> 挖掘頻繁使用的短語
+
+---
+
+## Using part-of relationship and the Web (Popescu and Etzioni, EMNLP-05)
+
+- Improved (Hu and Liu, KDD-04) by removing those frequent noun phrases that may not be features: better precision (a small drop in recall).
+
+- It identifies part-of relationship
+	- Each noun phrase is given a pointwise mutual information score between the phrase and part discriminators associated with the product class, e.g., a scanner class.
+	
+	- The part discriminators for the scanner class are, “of scanner”, “scanner has”, “scanner comes with”, etc, which are used to find components or parts of scanners by searching on the Web: the KnowItAll approach, (Etzioni et al, WWW-04).
+
+> 移除那些無用的feature, 以達到更好的精度
+
+---
+
+##  Infrequent features extraction
+
+- How to find the infrequent features?
+- Observation: the same opinion word can be used to describe different features and objects.
+  - “The pictures are absolutely amazing.”  - “The software that comes with it is amazing.”
+
+```
+Frequent features -> Opinion words -> Infrequent features
+```
+
+> 如何找到不常見的 features
+> 
+> 相同的 opinion word 可以被拿來描述不同的 features and objects
+
+
+---
+
+## Identify feature synonyms
+
+- Liu et al (WWW-05) made an attempt using only WordNet.  
+- Carenini et al (K-CAP-05) proposed a more sophisticated method based on several similarity metrics, but it requires a taxonomy of features to be given.	- The system merges each discovered feature to a feature node in the taxonomy.  
+	- The similarity metrics are defined based on string similarity, synonyms and other distances measured using WordNet.  
+	- Experimental results based on digital camera and DVD reviews show promising results.  
+- Many ideas in information integration are applicable.
+
+---
+
+##  Aggregation of opinion words (Hu and Liu, KDD-04; Ding and Liu, 2008)
+
+---
+
+##  Context dependent opinions
+
+- Popescu and Etzioni (EMNLP-05) used
+	- constraints of connectives in (Hazivassiloglou and McKeown, ACL-97), and some additional constraints, e.g., morphological relationships, synonymy and antonymy, and	- relaxation labeling to propagate opinion orientations to words and features.
+
+- Ding et al (2008) used
+
+	- constraints of connectives both at intra-sentence and inter-sentence levels, and
+
+	- additional constraints of, e.g., TOO, BUT, NEGATION, .... to directly assign opinions to (f, s) with good results (>0.85 of F-score).
+
+---
+
+## Some other related work
+
+- Morinaga et al. (KDD-02).- Yi et al. (ICDM-03)- Kobayashi et al. (AAAI-CAAW-05)
+- Ku et al. (AAAI-CAAW-05)- Carenini et al (EACL-06)- Kim and Hovy (ACL-06a)- Kim and Hovy (ACL-06b)- Eguchi and Lavrendo (EMNLP-06)   Zhuang et al (CIKM-06)- Mei et al (WWW-2007)- Many more
+
+---
+
+
+
+
+
+
+
+
+
+
+
 
 
 
