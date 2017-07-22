@@ -126,7 +126,7 @@ most current information processing techique (Ex. search engine) work with facts
 
 ## Find opinions on a object
 
-**We use product reviews as an example : **
+**We use product reviews as an example :**
 
 - Searching for opinion in product reviews is different from general Web search.
     - E.g search for opinion on "Motorola RAZR V3"
@@ -162,10 +162,15 @@ most current information processing techique (Ex. search engine) work with facts
 
     > 問題是 使用者需要 看過所有排名前面的 評論嗎?
     > 或者系統應該提供 評論的 總結?
-    
---- 
+  
+<br>
 
-## Opinion mining - the abstraction
+--- 
+---
+
+<br>
+
+# Opinion mining - the abstraction
 (Hu and Liu, KDD-04; Liu, Web Data Mining book 2007)
 
 - Basic components of an opinion
@@ -180,6 +185,97 @@ most current information processing techique (Ex. search engine) work with facts
 - Let us abstract the problem
     - put existing research into a common framework
 - We use consumer reviews of products to develop the ideas. Other opinionated contexts are similaar.
+ > 使用 消費者評論 來實現 idea
+
+---
+
+## Object/entity
+
+- Definition(object): An object `O` is an entity which can be a product, person, event, organization, or topic `O` is represented as
     
+    - a hierarchy of components, subcomponents and so on..
+    
+    - each node represents a component and is associated with a set of attributes of the component..
+    
+    - `O` is the root node(which also has a set of attributes)
+    
+    > 定義 `O` 是一個實體, 可以是一個人, 一個產品, 一個組織 或者
+    > 一個有階級的組件 or 部件
+    > 每個 node 表示一個組件, 並且與組件的一組屬性相關聯
+    > `O` 表示 主節點, 同樣有著一組屬性
+
+- An opinion can be expressed on any node or attribute of the node.
+ > opinion 可以被任何node or attribute 表達出來
+
+- to simplify our discussion, we use `features` to represent both components and attributes.
+    - The term `feature` should be understood in a **Broad sense**
+        product feature, topic or sub-topic, event or sub-event, etc
+
+> 為了簡化討論我們使用 廣義的 `features` 來表達 components and attributes.
+> `O` 本身也是個 `feature`
+
+---
+
+## Opinion mining tasks(contd)
+
+**At the feature level**
+
+- Task 1 : Identifying and extracting object features that have been commented on in each review.
+- Task 2 : Determining whether the opinions on the features are postive, negative or nrutral.
+- Task 3 : Grouping synonyms of features
+
+produce a feature-based opinion summary of multiple reviews.
+
+> 在 Feature-Level
+> 有三個主要任務
+> > * 識別和提取已註釋的 object feature.
+> > * 判斷feature is positive, negative or neutral
+> > * 把同義詞 feature  grouping 起來
+>
+> 最後基於多個評論產生 feature-based opinion
+
+**Opinion holder**
+
+identify holders is also useful. e.g in news article, ,etc, but they are usually known in the user generated content, i.e , auther of the posts.
+
+> 識別 opinion-holder  同樣有幫助, 例如報導的作者, 但是他們通常是已知的
+
+
+---
+
+## More at the feature level
+
+`F` : the set of features
+`W` : the synonyms of each feature
+
+> `F`表示 一組feature
+> `W`表示 每個feature 的同義詞
+
+- problem 1 :
+    Both `F` and `W` are unknown.
+    We need to perform all three tasks.
+- problem 2 : 
+    F is known but w is unknown.
+    - All three tasks are still needed. Task 3 is easier.
+    - It becomes the problem of matching the discovered featured with the set of given features F.
+   
+- problem 3 : 
+    Both `W` and `F` is known.
+    - Only task 2 is needed.
+
+>  問題是
+> * 如果`F`, `W` 皆未知, 需要執行所有tasks.
+> * 如果`W` 未知, Tasks 3 的問題會變成是 匹配 新發現的 feature 與 已給定 feature 的 feature 
+> * 如果`W`, `F` 皆已知, 只需要執行 task 2
+
+---
+
+
+
+
+
+
 
     
+
+##     
