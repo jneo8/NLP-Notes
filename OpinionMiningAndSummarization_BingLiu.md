@@ -1081,9 +1081,40 @@ LSR: 〈{*, NN}{VBZ}〉 → 〈{$entityS1, NN}{VBZ}〉
 - (Fiszman et al 2007) tried to identify which entity has more of a certain property in a comparative sentence.
 - (Ding and Liu 2008 submitted) studies sentiment analysis of comparatives, i.e., identifying which entity is preferred.
 
+<br>
+
 ---
 
+---
 
+<br>
+
+
+# Review Spam
+
+Skip
+
+
+<br>
+
+---
+
+---
+
+<br>
+
+# Summary 
+
+
+Two types of opinions have been discussed  
+- Direct opinions  
+  - Document level, sentence level and feature level   
+  - Structured summary of multiple reviews  
+- Comparisons  
+  - Identification of comparative sentences   
+  - Extraction of comparative relations  
+- Very challenging problems, but there are already some applications of opinion mining.- Detecting opinion spam or fake reviews is very hard.
+
 	
 
 
