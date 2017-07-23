@@ -380,10 +380,16 @@ identify holders is also useful. e.g in news article, ,etc, but they are usually
 ## Other related works
 
 - Using PMI, syntactic relations and other attributes with SVM (Mullen and Collier, EMNLP-04).
-- Sentiment classification considering rating scales (Pang and Lee, ACL-05).  
-- Comparing supervised and unsupervised methods (Chaovalit and Zhou, HICSS-05)- Using semi-supervised learning (Goldberg and Zhu, Workshop on TextGraphs, at HLT-NAAL-06).
-- Review identification and sentiment classification of reviews (Ng, Dasgupta and Arifin, ACL-06). 
-- Sentiment classification on customer feedback data (Gamon, Coling-04).  
+
+- Sentiment classification considering rating scales (Pang and Lee, ACL-05).
+  
+- Comparing supervised and unsupervised methods (Chaovalit and Zhou, HICSS-05)
+
+- Using semi-supervised learning (Goldberg and Zhu, Workshop on TextGraphs, at HLT-NAAL-06).
+- Review identification and sentiment classification of reviews (Ng, Dasgupta and Arifin, ACL-06).
+ 
+- Sentiment classification on customer feedback data (Gamon, Coling-04).
+  
 - Comparative experiments (Cui et al. AAAI-06)
 - Many more ...
 
@@ -402,7 +408,7 @@ identify holders is also useful. e.g in news article, ,etc, but they are usually
  - Much of the work on sentence level sentiment analysis focuses on identifying `subjective sentiences` in new articles.
  	- Classification : objective and subjective.
  	- All techniques use some forms of machine learning
- 	- E.g., using a naïve Bayesian classifier with a set of data features/attributes extracted from training sentences (Wiebe et al. ACL-99).
+ 	- E.g., using a naïve Bayesian classifier with a set of data features/attributes extracted from training sentences (Wiebe et al. ACL-99).
 
 > **對大多數的 application 來說, document-level 太過於粗糙**
 > 大多數的 sentiment-level 在 主要是在確定文章中主觀的句子
@@ -425,9 +431,18 @@ identify holders is also useful. e.g in news article, ,etc, but they are usually
 
 ##  Other related work
 
-- Consider gradable adjectives (Hatzivassiloglou and Wiebe, Coling- 00)  
-- Semi-supervised learning with the initial training set identified by some strong patterns and then applying NB or self-training (Wiebe and Riloff, CICLing-05).- Finding strength of opinions at the clause level (Wilson et al. AAAI- 04).  
-- Sum up orientations of opinion words in a sentence (or within some word window) (Kim and Hovy, COLING-04).- Find clause or phrase polarities based on priori opinion words and classification (Wilson et al. EMNLP-05)- Semi-supervised learning to classify sentences in reviews (Gamon et al. IDA-05).  
+- Consider gradable adjectives (Hatzivassiloglou and Wiebe, Coling- 00)
+  
+- Semi-supervised learning with the initial training set identified by some strong patterns and then applying NB or self-training (Wiebe and Riloff, CICLing-05).
+
+- Finding strength of opinions at the clause level (Wilson et al. AAAI- 04).
+  
+- Sum up orientations of opinion words in a sentence (or within some word window) (Kim and Hovy, COLING-04).
+
+- Find clause or phrase polarities based on priori opinion words and classification (Wilson et al. EMNLP-05)
+
+- Semi-supervised learning to classify sentences in reviews (Gamon et al. IDA-05).
+  
 - Sentiment sentence retrieval (Eguchi and Lavrendo, EMNLP-06)
 
 ---
@@ -551,12 +566,16 @@ EMNLP-03) are similar.
 
 ## Dictionary-based approaches
 
-- Typically use WordNet’s synsets and hierarchies toacquire opinion words
+- Typically use WordNet’s synsets and hierarchies to
+acquire opinion words
  - Start with a small seed set of opinion words.
  - Use the set to search for synonyms and antonyms in WordNet (Hu and Liu, KDD-04; Kim and Hovy, COLING-04).
  - Manual inspection may be used afterward.
 
-- Use additional information (e.g., glosses) from WordNet (Andreevskaia and Bergler, EACL-06) and learning (Esuti and Sebastiani, CIKM-05).- Weakness of the approach: Do not find context dependent opinion words, e.g., small, long, fast.
+- Use additional information (e.g., glosses) from WordNet (Andreevskaia and Bergler, EACL-06) and learning (Esuti and Sebastiani, CIKM-05).
+
+
+- Weakness of the approach: Do not find context dependent opinion words, e.g., small, long, fast.
 
 > 從一個種子意見詞開始, 搜索同義詞和反義詞
 > 之後可以手動檢查
@@ -571,9 +590,13 @@ EMNLP-03) are similar.
 
 # Feature-based opinion mining and summarization
 
-- Again focus on reviews (easier to work in a concrete domain!)- Objective: find what reviewers (opinion holders) liked and disliked
+- Again focus on reviews (easier to work in a concrete domain!)
 
-	- Product features and opinions on the features- Since the number of reviews on an object can be large, an opinion summary should be produced.
+- Objective: find what reviewers (opinion holders) liked and disliked
+
+	- Product features and opinions on the features
+
+- Since the number of reviews on an object can be large, an opinion summary should be produced.
 
 	- Desirable to be a structured summary.
 	- Easy to visualize and to compare.
@@ -584,7 +607,10 @@ EMNLP-03) are similar.
 ## The tasks
 
  - Recall the three tasks in our model.
- 	- Task 1: Extract object features that have been commented on in each review.	- Task 2: Determine whether the opinions on the features are positive, negative or neutral.	- Task 3: Group feature synonyms.   Produce a summary 
+ 	- Task 1: Extract object features that have been commented on in each review.
+	- Task 2: Determine whether the opinions on the features are positive, negative or neutral.
+	- Task 3: Group feature synonyms.   Produce a summary
+ 
  - Task 2 may not be needed depending on the format of reviews.
 
 --- 
@@ -597,7 +623,9 @@ EMNLP-03) are similar.
 
 -  Format 2 - Pros and Cons: The reviewer is asked to describe Pros and Cons separately. Cnet.com used to use this format.
 
-> 分別描述利弊- Format 3 - free format: The reviewer can write freely, i.e., no separation of Pros and Cons. Amazon.com uses this format.
+> 分別描述利弊
+
+- Format 3 - free format: The reviewer can write freely, i.e., no separation of Pros and Cons. Amazon.com uses this format.
 
 > 免費格式, 自由輸入
 
@@ -622,13 +650,16 @@ EMNLP-03) are similar.
 - Label sequential rules (LSR) are a special kind of sequential patterns, discovered from sequences.
 - LSR Mining is supervised (Liu’s Web mining book 2006).
 - The training data set is a set of sequences, e.g.,
-	`Included memory is stingy`
-		is turned into a sequence with POS tags.
+
+	`Included memory is stingy`
+	
+	is turned into a sequence with POS tags.
 	
 	<{included, VB}{memory, NN}{is, VB}{stingy, JJ}>
 	
 	then turned into
-		<{included, VB}{`$feature`, NN}{is, VB}{stingy, JJ}>
+	
+	<{included, VB}{`$feature`, NN}{is, VB}{stingy, JJ}>
 
 > LSR 是種順序模式的特殊類型, 從序列中發現
 > 屬於監督學習
@@ -654,7 +685,8 @@ EMNLP-03) are similar.
 
 	- Only the right hand side of each rule is needed.
 	- The word in the sentence segment of a new review that matches $feature is extracted.
-	- We need to deal with conflict resolution also(multiple rules are applicable).
+	- We need to deal with conflict resolution also
+(multiple rules are applicable).
 
 > 提取符合 $feature 規則的單詞
 
@@ -688,12 +720,21 @@ EMNLP-03) are similar.
 
 ## Frequency based approach
 
-(Hu and Liu, KDD-04; Liu, Web Data Mining book 2007)- Frequent features: those features that have been talked about by many reviewers. 
-- Use sequential pattern mining  
+(Hu and Liu, KDD-04; Liu, Web Data Mining book 2007)
+
+
+
+- Frequent features: those features that have been talked about by many reviewers.
+ 
+- Use sequential pattern mining
+  
 - Why the frequency based approach
-	- Different reviewers tell different stories (irrelevant)  - When product features are discussed, the words that they use converge.
-  - They are main features.  
-- Sequential pattern mining finds`frequent phrases`.  
+	- Different reviewers tell different stories (irrelevant)
+  - When product features are discussed, the words that they use converge.
+  - They are main features.
+  
+- Sequential pattern mining finds`frequent phrases`.
+  
 - Froogle has an implementation of the approach (no POS restriction).
 
 > 被許多評論使用的 feature
@@ -724,7 +765,9 @@ EMNLP-03) are similar.
 
 - How to find the infrequent features?
 - Observation: the same opinion word can be used to describe different features and objects.
-  - “The pictures are absolutely amazing.”  - “The software that comes with it is amazing.”
+
+  - “The pictures are absolutely amazing.”
+  - “The software that comes with it is amazing.”
 
 ```
 Frequent features -> Opinion words -> Infrequent features
@@ -739,10 +782,16 @@ Frequent features -> Opinion words -> Infrequent features
 
 ## Identify feature synonyms
 
-- Liu et al (WWW-05) made an attempt using only WordNet.  
-- Carenini et al (K-CAP-05) proposed a more sophisticated method based on several similarity metrics, but it requires a taxonomy of features to be given.	- The system merges each discovered feature to a feature node in the taxonomy.  
-	- The similarity metrics are defined based on string similarity, synonyms and other distances measured using WordNet.  
-	- Experimental results based on digital camera and DVD reviews show promising results.  
+- Liu et al (WWW-05) made an attempt using only WordNet.
+  
+- Carenini et al (K-CAP-05) proposed a more sophisticated method based on several similarity metrics, but it requires a taxonomy of features to be given.
+
+	- The system merges each discovered feature to a feature node in the taxonomy.
+  
+	- The similarity metrics are defined based on string similarity, synonyms and other distances measured using WordNet.
+  
+	- Experimental results based on digital camera and DVD reviews show promising results.
+  
 - Many ideas in information integration are applicable.
 
 ---
@@ -754,20 +803,32 @@ Frequent features -> Opinion words -> Infrequent features
 ##  Context dependent opinions
 
 - Popescu and Etzioni (EMNLP-05) used
-	- constraints of connectives in (Hazivassiloglou and McKeown, ACL-97), and some additional constraints, e.g., morphological relationships, synonymy and antonymy, and	- relaxation labeling to propagate opinion orientations to words and features.
+	- constraints of connectives in (Hazivassiloglou and McKeown, ACL-97), and some additional constraints, e.g., morphological relationships, synonymy and antonymy, and
+
+	- relaxation labeling to propagate opinion orientations to words and features.
 
 - Ding et al (2008) used
 
-	- constraints of connectives both at intra-sentence and inter-sentence levels, and
+	- constraints of connectives both at intra-sentence and inter-
+sentence levels, and
 
-	- additional constraints of, e.g., TOO, BUT, NEGATION, .... to directly assign opinions to (f, s) with good results (>0.85 of F-score).
+	- additional constraints of, e.g., TOO, BUT, NEGATION, .... to directly assign opinions to (f, s) with good results (>
+0.85 of F-score).
 
 ---
 
 ## Some other related work
 
-- Morinaga et al. (KDD-02).- Yi et al. (ICDM-03)- Kobayashi et al. (AAAI-CAAW-05)
-- Ku et al. (AAAI-CAAW-05)- Carenini et al (EACL-06)- Kim and Hovy (ACL-06a)- Kim and Hovy (ACL-06b)- Eguchi and Lavrendo (EMNLP-06)   Zhuang et al (CIKM-06)- Mei et al (WWW-2007)- Many more
+- Morinaga et al. (KDD-02).
+- Yi et al. (ICDM-03)
+- Kobayashi et al. (AAAI-CAAW-05)
+- Ku et al. (AAAI-CAAW-05)
+- Carenini et al (EACL-06)
+- Kim and Hovy (ACL-06a)
+- Kim and Hovy (ACL-06b)
+- Eguchi and Lavrendo (EMNLP-06)   Zhuang et al (CIKM-06)
+- Mei et al (WWW-2007)
+- Many more
 
 <br>
 
@@ -989,7 +1050,8 @@ Taks 3 : Extract comparative relations from the sentence.
 
 - Classify comparative sentences into three types: non-equal gradable, equative, and superlative
 	- SVM learner gave the best result.
-	- Attribute set is the set of keywords.	- If the sentence has a particular keyword in the attribute set, the corresponding value is 1, and 0 otherwise.
+	- Attribute set is the set of keywords.
+	- If the sentence has a particular keyword in the attribute set, the corresponding value is 1, and 0 otherwise.
 
 > 將比較句分為三類
 > 
@@ -1032,10 +1094,12 @@ Assumptions
 ## Sequence data generation
 
 - Label Set = {$entityS1, $entityS2, $feature}
-- Three labels are used as pivots to generatesequences.
+- Three labels are used as pivots to generate
+sequences.
 	- Radius of 4 for optimal results
 - Following words are also added
-	- Distance words = {l1, l2, l3, l4, r1, r2, r3, r4}, where “li” means distance of i to the left of the pivot.“ri” means the distance of i to the right of pivot.
+	- Distance words = {l1, l2, l3, l4, r1, r2, r3, r4}, where “li” means distance of i to the left of the pivot.
+“ri” means the distance of i to the right of pivot.
 
 	- Special words #start and #end are used to mark the start and the end of a sentence.
 
@@ -1044,11 +1108,20 @@ Assumptions
 
 **Example**
 
-The comparative sentence“Canon/NNP has/VBZ better/JJR optics/NNS” has $entityS1 “Canon” and $feature “optics”.
+The comparative sentence
+“Canon/NNP has/VBZ better/JJR optics/NNS” has $entityS1 “Canon” and $feature “optics”.
 
 Sequences are:
 
-- 〈{#start}{l1}{$entityS1, NNP}{r1}{has, VBZ }{r2 } {better, JJR}{r3}{$Feature, NNS}{r4}{#end}〉- 〈{#start}{l4}{$entityS1, NNP}{l3}{has, VBZ}{l2} {better, JJR}{l1}{$Feature, NNS}{r1}{#end}〉---
+```
+<{#start}{l1}{$entityS1, NNP}{r1}{has, VBZ }{r2 } {better, JJR}{r3}{$Feature, NNS}{r4}{#end}>
+
+
+<{#start}{l4}{$entityS1, NNP}{l3}{has, VBZ}{l2} {better, JJR}{l1}{$Feature, NNS}{r1}{#end}>
+```
+
+
+---
 
 ## Build a sequential cover from LSRs
 
@@ -1065,7 +1138,9 @@ LSR: 〈{*, NN}{VBZ}〉 → 〈{$entityS1, NN}{VBZ}〉
 ## Experimental results (Jindal and Liu, AAAI-06)
 
 - Identifying Gradable Comparative Sentences
-	- precision = 82% and recall = 81%.- Classification into three gradable types
+	- precision = 82% and recall = 81%.
+
+- Classification into three gradable types
 	- SVM gave accuracy of 96%
 
 - Extraction of comparative relations
@@ -1106,15 +1181,23 @@ Skip
 # Summary 
 
 
-Two types of opinions have been discussed  
-- Direct opinions  
+Two types of opinions have been discussed
+  
+- Direct opinions
+  
   - Document level, sentence level and feature level   
-  - Structured summary of multiple reviews  
-- Comparisons  
+  - Structured summary of multiple reviews
+  
+- Comparisons
+  
   - Identification of comparative sentences   
-  - Extraction of comparative relations  
-- Very challenging problems, but there are already some applications of opinion mining.- Detecting opinion spam or fake reviews is very hard.
-
+  - Extraction of comparative relations
+  
+- Very challenging problems, but there are already some applications of opinion mining.
+
+- Detecting opinion spam or fake reviews is very hard.
+
+
 	
 
 
@@ -1133,6 +1216,7 @@ Two types of opinions have been discussed
 	
 	 
 	
+
 
 
 
