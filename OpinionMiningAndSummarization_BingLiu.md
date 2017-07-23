@@ -769,11 +769,239 @@ Frequent features -> Opinion words -> Infrequent features
 - Morinaga et al. (KDD-02).- Yi et al. (ICDM-03)- Kobayashi et al. (AAAI-CAAW-05)
 - Ku et al. (AAAI-CAAW-05)- Carenini et al (EACL-06)- Kim and Hovy (ACL-06a)- Kim and Hovy (ACL-06b)- Eguchi and Lavrendo (EMNLP-06)   Zhuang et al (CIKM-06)- Mei et al (WWW-2007)- Many more
 
+<br>
+
+---
+
+---
+
+<br>
+
+
+## Extractino of comparatives (Jinal and Liu, SIGIR-06, AAAI-06; Liu’s Web Data Mining book)
+
+- Recall: Two types of evaluation
+	- Direct opinions : "This car is bad"
+	- Comprisons: "car X is not as good as car Y"
+
+- They use different language constructs
+
+> 兩種類型, 直接與比較
+> 使用不同的語言結構
+
+- Direct expression of sentiment are goood. Compareison may be better.
+	- Good or bad, compared to what?
+- Comparative Sentence Mining
+	- Identify comparative sentences, and
+	- extract comparative relations from them
+
+> 直接表達情緒的結果可能是好的, 比較可能會更好
+> 
+> Comparative Sentence Mining
+> > 識別比較句子
+> > 
+> > 提取比較句子的關係
+
+---
+
+##  Linguistic Perspective
+
+- Comparative sentence use morphemes like
+	- more/most, -er/-est, less/least and as.
+	- then and as are used to make a `standard` againest which an entity is compared
+
+> 比較句所使用的語素
+> `and`, `as` 被拿來當作標準來比較 實體
+
+**Limitations**
+
+- Limited cinverage
+	- Ex "in market capital, intel is way ahead of Amd"
+- Non-comparatives with comparative words
+	- Ex "in the context of speed, faster means better."
+- **For human consumptino; no computational methods**
+
+> 限制有
+> 
+> * 不具有比較詞的比較
+> 
+> * 沒有計算方法
+
+---
+
+## Types of comparatives: Gradable
+
+- Gradable
+	- Non-Equal Gradable: Relations of the types greater or less then
+		- Keywords like better, ahead, beats, etc
+		- Ex: "option of camera A is better than that of camare B"
+	- Equative: Relations of the type equal to
+		- keywords and phrases like equal to, same as , both, all
+		- Ex, "camera A and camera B both come in 7MP"
+	- Superlative: Relations of the type greater or less than all others
+		 - Keywords and phrases like best, most, better than all
+		 - Ex: "camera A is the cheapest camera available in market"
+
+> 比較方法 : 分級
+> * 不相等的等級
+> * 同等
+> * 最高級
+
+---
+
+## Types of comparatives: non-gradable
+
+- non-gradable: Sentences that compare features of two or more objects, but do not grade them. Sentences which imply:
+	- Object A is similar to or different from Object B with regard to some features.
+	- Object A has feature F1, Object B has feature F2 (F1 and F2 are usually substitutable)
+	- Object A has feature F, but object B does not have.
+
+> 比較方法 : 不分級
+> 
+> 比較多個對象的 feature,  但不對其進行分級
+> 
+> 句子有
+> 
+> * object A 與 object B 類似或者不同於某些feature
+> * object A 有 feature f1, object B 有 feature f2 (f1, f2 通常可替換)
+> * object A 有 feature F, 但 object B 沒有
+
+---
+
+## Comparative Relation : gradable
+
+- Definition : A gradable comparative relation captures the essence of a gradable comparative sentence and is represented with the following:
+	- relation Word : the keyword used to express a comparative relation in a sentence.
+	- features: a set of features being compared.
+	- entityS1 and entuitS1: Sets of entities being compared.
+	- type: non-equal gradable, equative or superlative.
+
+> 比較關係 : 可分級
+> 
+> 定義 : 一個 可分級比較關係 描述了一個可分級比較句的本質, 有下列本質
+> 
+> * 關係詞, 用於表達比較關係的關鍵詞
+> * features, 一組被比較的features
+> * entityS1 and entityS2, 被比較的實體集合
+> * type, 不同, 相同 or 最高級的比較
+
+
+---
+
+## Example: Comparative relations
+
+- Ex1 : "car X  has better controls than car Y"
+
+	- relatinoWord = better, features = controls, entityS1 = car X, entityS2 = car Y, type = non-equal-gradable.
+
+- Ex2 : "car X and car Y have equal mileage"	
+	- relationWord = equal, feature = mileage, entityS1 = car X, entittyS2 = {car Y, car Z}, type = non-equal-gradable
+
+- Ex3 : "car x is cheaper than both car Y and car Z"
+	
+	- relationWord = cheaper, features= null, entityS1 = car X, entityS2 = {car Y, car Z}, type =non-equal-gradable
+
+- Ex4 : "company X produces a variety of cars, but still best cars come from company Y"
+	- relationWord=best, features=cars, entityS1=company1, entityS2=null, type= superlative
+
+---
+
+## Tasks
+
+Given a collectino of evaluative texts
+
+Task 1 : identify comparative sntences.
+Task 2 : Categorize different types of comparative sentences.
+Taks 3 : Extract comparative relations from the sentence.
+
+> * 識別比較性文本
+> * 對不同類型的句子進行分類
+> * 從句子中提取比較關係
+
+
+---
+
+## Identify comparative sentences(Jinal and Liu, SIGIR-06)
+
+**Keyword strategy**
+
+- An observation: It is easy to find a small set of keywords that covers almost all comparative sentences, i.e with  a very high recall and a reasonable precision.
+- We have compiled a list of 83 keywords used in comparative sentences, which includes:
+
+	- Word with POS tags of JJR, JJS, RBR, RBS
+		- POS tags are used as keyword instead of individual words.
+		- Exceptions: more, less, most and least
+	- Other indicative word like beat, exceed, ahead, etc
+	- Phrases like in the lead, on par with , etc.
+
+> 確定比較句子
+> 
+> 關鍵詞策略
+> 
+> 使用了 83 個 關鍵詞表
+> 
+> * 包含具有 JJR, JJS, RBR, RBS 的 POS 標籤的字
+> * POS 用作關鍵詞而不是單詞
+> * 例外 : more, less, most, least
+> 
+> 其他指示性詞 beat, exceed, ahead
+> 
+> 短語 
+
+---
+
+## 2 step learning strategy
+
+
+- Step 1 : Extract sentence which contain at least a keyword(recall = 98%, precisino=32% on our data set for gradables)
+
+- Step 2 : Use the naive Bayes(NB) classifier to classifier sentences into two classes
+	- comparative and non-comparative
+	- attributes: class sequential rules(CSRs) generated from sentence in step 1, e.g <{1}{2}{7, 8}> -> classi [sup=2/5, conf=3/4]
+
+> * Step 1 提取包含至少一個關鍵字的句子
+> * Step 2 使用 `NB` classifier 將 句子分類為兩種, 比較與非比較, 屬性為步驟一生成的類順序規則 CSRs
+
+<br>
+
+- **1. Sequence data preparation**
+	
+	- Use words within radius r of a keyword to form a sequence(word are replaced with POS tgs)
+
+- **2. CSR Generation**
+	- Use different minimum supports for different keywords (multiple minimum supports)
+	- 13 manual rules, which were hard to generate automatically.
+
+- **3. Learning using a NB classifier**
+
+	- Use CSRs and manual rules as attributes to build a final classifier.
+
+> * 使用關鍵字半徑 r 內的單詞 形成 一個列序(使用POS tag 替換)
+> * 產生CSR
+> 
+> > * 對不同關鍵字使用不同的最低支持
+> > * 13 個手動規則, 很難自動生成
+> 使用 `NB` 分類器, 使用CSR 和手動規則作為最後的 屬性
+
+---
+
+##Classify differnt types of comparatives
+
+- Classify comparative sentences into three types: non-equal gradable, equative, and superlative
+	- SVM learner gave the best result.
+	- Attribute set is the set of keywords.	- If the sentence has a particular keyword in the attribute set, the corresponding value is 1, and 0 otherwise.
+
+> 將比較句分為三類
+> 
+> * SVM 獲得最佳解
+> * 屬性集是一組關鍵字
+> * 如果句子在屬性集中具有特定關鍵字, 則值為1, 沒有則為0
+
 ---
 
 
 
-
+	
 
 
 
