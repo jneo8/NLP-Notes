@@ -999,6 +999,89 @@ Taks 3 : Extract comparative relations from the sentence.
 
 ---
 
+## Extraction of comparative relations(Jindal and Liu, AAAI-06; Liu’s Web mining book 2006)
+
+Assumptions
+
+- There is only one relation in a sentence
+- Entities and features are nouns (include nouns, plural nouns and proper nouns) and pronouns.
+	- Adjectival comparatives
+	- Does not deal with adverbial comparatives
+
+3 steps
+
+- Sequence data generation
+- Label sequential rule (LSR) generation
+- Build a sequential cover/extractor from LSRs
+
+> 假設
+> > 一句話中只有一個關係
+> > 
+> > entities and features 都是名詞
+> > > 形容詞比較
+> > > 
+> > > 不比較副詞
+> 
+> 3 步驟
+> > * 產生列序數據
+> > * 產生標籤順序 `LSR`
+> > * 建立一個 順序提取器 從 LSR
+
+---
+
+## Sequence data generation
+
+- Label Set = {$entityS1, $entityS2, $feature}
+- Three labels are used as pivots to generatesequences.
+	- Radius of 4 for optimal results
+- Following words are also added
+	- Distance words = {l1, l2, l3, l4, r1, r2, r3, r4}, where “li” means distance of i to the left of the pivot.“ri” means the distance of i to the right of pivot.
+
+	- Special words #start and #end are used to mark the start and the end of a sentence.
+
+> 以半徑為四, 提取feature 左右兩邊的詞
+
+
+**Example**
+
+The comparative sentence“Canon/NNP has/VBZ better/JJR optics/NNS” has $entityS1 “Canon” and $feature “optics”.
+
+Sequences are:
+
+- 〈{#start}{l1}{$entityS1, NNP}{r1}{has, VBZ }{r2 } {better, JJR}{r3}{$Feature, NNS}{r4}{#end}〉- 〈{#start}{l4}{$entityS1, NNP}{l3}{has, VBZ}{l2} {better, JJR}{l1}{$Feature, NNS}{r1}{#end}〉---
+
+## Build a sequential cover from LSRs
+
+LSR: 〈{*, NN}{VBZ}〉 → 〈{$entityS1, NN}{VBZ}〉
+
+- Select the LSR rule with the highest confidence. Replace the matched elements in the sentences that satisfy the rule with the labels in the rule.
+- Recalculate the confidence of each remaining rule based on the modified data from step 1.
+- Repeat step 1 and 2 until no rule left with confidence higher than the minconf value (we used 90%).
+
+> 建立 LSR cover
+
+---
+
+## Experimental results (Jindal and Liu, AAAI-06)
+
+- Identifying Gradable Comparative Sentences
+	- precision = 82% and recall = 81%.- Classification into three gradable types
+	- SVM gave accuracy of 96%
+
+- Extraction of comparative relations
+
+	- LSR (label sequential rules): F-score = 72%
+
+
+--- 
+
+## Some other work
+
+- (Bos and Nissim 2006) proposes a method to extract items from superlative sentences. It does not study sentiments either.
+- (Fiszman et al 2007) tried to identify which entity has more of a certain property in a comparative sentence.
+- (Ding and Liu 2008 submitted) studies sentiment analysis of comparatives, i.e., identifying which entity is preferred.
+
+---
 
 
 	
