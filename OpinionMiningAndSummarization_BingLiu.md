@@ -1198,27 +1198,6 @@ Two types of opinions have been discussed
 - Detecting opinion spam or fake reviews is very hard.
 
 
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	 
-	
-
-
-
 
 
 
